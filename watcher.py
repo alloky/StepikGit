@@ -1,5 +1,6 @@
 import argparse
 import pyinotify
+from watchdog.utils.dirsnapshot import DirectorySnapshot, DirectorySnapshotDiff
 import os
 import asyncore
 
@@ -39,6 +40,12 @@ def main():
     root_path = args.root_path
 
     course = Course(root_path)
+
+    snap1 = DirectorySnapshot(".")
+    snap2 = DirectorySnapshot(".")
+
+    diff = DirectorySnapshotDiff(snap1, snap2)
+    diff.
 
     setup_watchers(course)
     asyncore.loop()
